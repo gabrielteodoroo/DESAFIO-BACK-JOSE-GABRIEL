@@ -38,3 +38,21 @@ export const ResultadoSchema = z.object({
     invalid_type_error: "O campo nota precisa ser do tipo numérico",
   }),
 });
+
+export const bimestreSchema = z.object({
+  bimestre: z
+    .string({
+      required_error: "Bimestre é um campo obrigatório",
+      invalid_type_error: "O campo Bimestre precisa ser do tipo texto",
+    })
+    .refine(
+      (bimestre) =>
+        bimestre !== "PRIMEIRO" &&
+        bimestre !== "SEGUNDO" &&
+        bimestre !== "TERCEIRO" &&
+        bimestre !== "QUARTO",
+      {
+        message: "Informe um bimestre válido",
+      }
+    ),
+});
